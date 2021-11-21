@@ -1,0 +1,37 @@
+Terminals:
++ - * / % = & ^ ~ < > ' " , ( ) : variable number string true false if else elif and or not break pass raise while for in def return class import as from with
+Variables:
+S STRING BOOLEAN BRACKET OPS LOGOPS ASSOPS COMPOPS IF ELSE ELIF FOR WHILE CONDITION VARIABLE VARVAL VALUE COMBODY BREAK PASS RAISE IMPORT FROM CLASS DEF RETURN RANGE INPUT WITH COMMENT
+Productions:
+S -> S S | VARIABLE ASSOPS VARVAL | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT | INPUT;
+DEF -> def VARIABLE ( VARIABLE ) : S | DEF RETURN;
+RETURN -> return VARVAL | return BOOLEAN;
+CLASS -> class VARIABLE : S;
+IMPORT -> import VARIABLE | import VARIABLE as VARIABLE;
+FROM -> from VAR IMPORT;
+INPUT -> input ( STRING ) | input ( );
+VARVAL -> VARIABLE | VALUE | VARVAL OPS VARVAL | VARVAL , VARVAL | WITH;
+VARIABLE -> variable;
+VALUE -> number | VARVAL OPS VARVAL | ( VARVAL ) | BOOLEAN | STRING;
+STRING -> " string " | ' string ' | STRING + STRING;
+BOOLEAN -> true | false | BOOLEAN and BOOLEAN | BOOLEAN or BOOLEAN | not BOOLEAN | BOOLEAN COMPOPS BOOLEAN | VARVAL is VARVAL; 
+BRACKET -> ( VARVAL ) | ( );
+OPS -> + | - | * | / | % | * * | / /;
+BITOPS -> & | ^ | ~ | < < | > >;
+ASSOPS -> = | OPS = | BITOPS =;
+COMPOPS -> = = | ! = | > | < | > = | < =;
+FOR -> for VARIABLE in ARRAY : S | for VARIABLE in RANGE ;
+RANGE -> range ( VALUE );
+COMMA -> VARIABLE , VARIABLE | number , number | COMMA , VARIABLE;
+ARRAY -> STRING | [ COMMA ] | [ ARRAY ]; 
+CONDITION -> ( BOOLEAN ) | BOOLEAN;
+IF -> if CONDITION : S | IF ELIF | IF ELSE | IF BREAK | IF WHILE | IF CONTINUE | ELIF PASS;
+WHILE -> while CONDITION : S;
+ELIF -> elif CONDITION  : S | ELIF ELIF | ELIF ELSE | ELIF BREAK | ELIF WHILE | ELIF CONTINUE | ELIF PASS;
+ELSE -> else : S;
+COMBODY -> VARVAL | COMBODY COMBODY;
+COMMENT -> " " " COMBODY " " " | ' ' ' COMBODY ' ' ';
+BREAK -> break;
+PASS -> pass;
+RAISE -> raise BRACKET;
+WITH -> with open BRACKET as VARIABLE :
