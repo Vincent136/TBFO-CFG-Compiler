@@ -1,0 +1,14 @@
+import pandas as pd
+import matplotlib
+from matplotlib import numpy
+from matplotlib import numpy as np
+
+def apalah(gatau):
+    print('susah ya')
+
+def cyk(mantap):
+    mantap +=1
+    return mantap
+
+''' semangat
+    gais '''
