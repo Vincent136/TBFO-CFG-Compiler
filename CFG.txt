@@ -1,37 +1,71 @@
 Terminals:
-+ - * / % = & ^ ~ < > ' " , ( ) : variable number string true false if else elif and or not break pass raise while for in def return class import as from with
++ - * / % and or variable number is ! not = > < ( ) true false string ' " if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open
 Variables:
-S STRING BOOLEAN BRACKET OPS LOGOPS ASSOPS COMPOPS IF ELSE ELIF FOR WHILE CONDITION VARIABLE VARVAL VALUE COMBODY BREAK PASS RAISE IMPORT FROM CLASS DEF RETURN RANGE INPUT WITH COMMENT
+START ALL VARIABLE VALUE BOOL OPS STRING IF ELIF ELSE PRINT EXPRES RELATION INPUT BRACKET TYPE WHILE FOR RANGE DEF CLASS IMPORT FROM RETURN RAISE WITH RANGE BREAK PASS CONTINUE COMMENT COMBODY NEBRACKET PRIMBOOL FUSION STRINGB LIST
 Productions:
-S -> S S | VARIABLE ASSOPS VARVAL | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT | INPUT;
-DEF -> def VARIABLE ( VARIABLE ) : S | DEF RETURN;
-RETURN -> return VARVAL | return BOOLEAN;
-CLASS -> class VARIABLE : S;
-IMPORT -> import VARIABLE | import VARIABLE as VARIABLE;
-FROM -> from VAR IMPORT;
-INPUT -> input ( STRING ) | input ( );
-VARVAL -> VARIABLE | VALUE | VARVAL OPS VARVAL | VARVAL , VARVAL | WITH;
+START -> START START | VARIABLE = ALL | VARIABLE + = ALL | VARIABLE - = ALL | VARIABLE * = ALL | VARIABLE / = ALL | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT; 
+ALL ->  VARIABLE | VALUE | INPUT | ALL , ALL | WITH | LIST;
+
 VARIABLE -> variable;
-VALUE -> number | VARVAL OPS VARVAL | ( VARVAL ) | BOOLEAN | STRING;
-STRING -> " string " | ' string ' | STRING + STRING;
-BOOLEAN -> true | false | BOOLEAN and BOOLEAN | BOOLEAN or BOOLEAN | not BOOLEAN | BOOLEAN COMPOPS BOOLEAN | VARVAL is VARVAL; 
-BRACKET -> ( VARVAL ) | ( );
-OPS -> + | - | * | / | % | * * | / /;
-BITOPS -> & | ^ | ~ | < < | > >;
-ASSOPS -> = | OPS = | BITOPS =;
-COMPOPS -> = = | ! = | > | < | > = | < =;
-FOR -> for VARIABLE in ARRAY : S | for VARIABLE in RANGE ;
-RANGE -> range ( VALUE );
-COMMA -> VARIABLE , VARIABLE | number , number | COMMA , VARIABLE;
-ARRAY -> STRING | [ COMMA ] | [ ARRAY ]; 
-CONDITION -> ( BOOLEAN ) | BOOLEAN;
-IF -> if CONDITION : S | IF ELIF | IF ELSE | IF BREAK | IF WHILE | IF CONTINUE | ELIF PASS;
-WHILE -> while CONDITION : S;
-ELIF -> elif CONDITION  : S | ELIF ELIF | ELIF ELSE | ELIF BREAK | ELIF WHILE | ELIF CONTINUE | ELIF PASS;
-ELSE -> else : S;
-COMBODY -> VARVAL | COMBODY COMBODY;
+
+LIST -> [ ALL ];
+
+VALUE -> number | ( ALL ) | BOOL | STRING;
+VALUE -> ALL OPS ALL | ALL ANOTHEROPS ALL;
+
+PRIMBOOL -> true | false;
+BOOL -> PRIMBOOL | BOOL and BOOL | BOOL or BOOL | not BOOL | ALL is ALL | ALL RELATION ALL;
+
+RELATION -> > | < | = = | ! = | < = | > =;
+OPS -> + | - | * | / | %;
+ANOTHEROPS -> / / | * *;
+
+STRING -> " STRINGB " | ' STRINGB ' | STRING + STRING;
+STRINGB -> string | STRINGB STRINGB;
+
 COMMENT -> " " " COMBODY " " " | ' ' ' COMBODY ' ' ';
+COMBODY -> ALL | COMBODY COMBODY;
+
+NEBRACKET -> ( ALL );
+BRACKET -> NEBRACKET | ( );
+
+PRINT -> print BRACKET;
+
+BACK -> : START;
+EXPRES -> ( BOOL ) BACK | BOOL BACK;
+
+IF -> if EXPRES;
+IF -> IF ELIF;
+IF -> IF ELSE;
+IF -> IF FUSION;
+
+ELIF -> elif EXPRES;
+ELIF -> ELIF ELIF;
+ELIF -> ELIF ELSE;
+ELIF -> ELIF FUSION;
+
+ELSE -> else BACK;
+
+FUSION -> BREAK | RAISE | PASS | CONTINUE;
+RAISE -> raise BRACKET;
 BREAK -> break;
 PASS -> pass;
-RAISE -> raise BRACKET;
-WITH -> with open BRACKET as VARIABLE :
+CONTINUE -> continue;
+
+TYPE -> str | float | int | double;
+INPUT -> input BRACKET | TYPE ( INPUT );
+
+RANGE -> range BRACKET;
+WHILE -> while EXPRES;
+
+FOR -> for VARIABLE in STRING BACK | for VARIABLE in RANGE BACK | for VARIABLE in LIST BACK;
+
+DEF -> def VARIABLE BRACKET BACK | DEF RETURN;
+RETURN -> return BOOL | return ALL;
+
+CLASS -> class VARIABLE BACK;
+
+IMPORT -> import VARIABLE as VARIABLE | import VARIABLE;
+FROM -> from VARIABLE IMPORT;
+
+WITH -> with open BRACKET as VARIABLE
