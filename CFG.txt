@@ -1,78 +1,40 @@
 Terminals:
-+ - * / % [ ] = > < ( ) ' " ! , and or variable number is not True False string if elif else : print input str float int double while for in range def class import as from return raise len range break pass continue with open TypeError Exception
+string variable number = $ + - / * ( ) " ' > < ! , : [ ] print import as from True False and or not is if elif else while class def return for in range with open input str int float double break pass continue
 Variables:
-START ALL VARIABLE VALUE BOOL OPS STRING IF ELIF ELSE PRINT EXPRES RELATION INPUT BRACKET TYPE WHILE FOR RANGE DEF CLASS IMPORT FROM RETURN RAISE WITH RANGE BREAK PASS CONTINUE COMMENT COMBODY  PRIMBOOL FUSION LIST
+START NEWLINE ASSCLAUSE VARIABLE VARVAL PRINT IMPORT FROM STRING CSTRING BODY BOOL IF ELIF ELSE IFBODY WHILE CLASS DEF RETURN OPS FOR LIST RANGE WITH INPUT TYPE BREAK PASS CONTINUE STATEMENT LOOPBODY
+
 Productions:
-START -> START START | VARIABLE = ALL | VARIABLE + = ALL | VARIABLE - = ALL | VARIABLE * = ALL | VARIABLE / = ALL | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT; 
-ALL ->  VARIABLE | VALUE | ALL OPS ALL | ALL , ALL | INPUT | WITH;
-
+START -> START NEWLINE | START NEWLINE START | ASSCLAUSE | PRINT | IMPORT | FROM | COMMENT | IF | WHILE | CLASS | DEF | FOR | WITH; 
+NEWLINE -> $;
+ASSCLAUSE -> VARIABLE = VARVAL | VARIABLE / = VARVAL | VARIABLE * = VARVAL | VARIABLE + = VARVAL | VARIABLE - = VARVAL;
 VARIABLE -> variable;
-
-LIST -> [ ALL ] | [ LIST ];
-
-VALUE -> number | ( ALL ) | BOOL | STRING;
-VALUE -> ALL OPS ALL | ALL ANOTHEROPS ALL;
-
-PRIMBOOL -> True | False;
-BOOL -> PRIMBOOL | BOOL and BOOL | BOOL or BOOL | not BOOL | ALL is ALL | ALL RELATION ALL;
-
-RELATION -> > | < | = = | ! = | < = | > =;
-
-OPS -> + | - | * | / | %;
-ANOTHEROPS -> / / | * *;
-
-STRING -> " string " | ' string ' | " COMBODY " | ' COMBODY ' | STRING + STRING;
-
-COMMENT -> " " " COMBODY " " " | ' ' ' COMBODY ' ' ';
-COMBODY -> ALL | COMBODY COMBODY;
-
-BRACKET -> ( ALL ) | ( );
-
-PRINT -> print BRACKET;
-
-BACK -> : START;
-EXPRES -> ( BOOL ) BACK | BOOL BACK;
-
-IF -> if EXPRES;
-IF -> IF ELIF;
-IF -> IF ELSE;
-IF -> IF RETURN;
-IF -> IF RAISE;
-IF -> IF FUSION;
-
-ELIF -> elif EXPRES;
-ELIF -> ELIF ELIF;
-ELIF -> ELIF ELSE;
-ELIF -> ELIF RETURN;
-ELIF -> ELIF RAISE;
-ELIF -> ELIF FUSION;
-
-ELSE -> else BACK;
-ELSE -> ELSE RETURN;
-ELSE -> ELSE RAISE;
-ELSE -> ELSE FUSION;
-
-RAISE -> raise TypeError BRACKET | raise Exception BRACKET;
-
-FUSION -> BREAK | PASS | CONTINUE;
+VARVAL -> VARIABLE | number | STRING | BOOL | VARVAL OPS VARVAL | VARVAL , VARVAL | INPUT;
+BOOL -> True | False | BOOL and BOOL | BOOL or BOOL | not BOOL | VARVAL is VARVAL | VARVAL RELOPS VARVAL;
+RELOPS -> > = | < = | ! = | = = | > | <;
+OPS -> + | - | / | * | % | ^ | < < | > >;
+STRING -> " CSTRING " | ' CSTRING ' | STRING + STRING;
+CSTRING -> string | CSTRING CSTRING;
+PRINT -> print ( VARVAL );
+IMPORT -> import VARIABLE | import VARIABLE as VARIABLE;
+FROM -> from VARIABLE IMPORT | from VARIABLE import *;
+COMMENT -> " " " CSTRING " " " | ' ' ' CTRING ' ' ';                                                                    
+BODY -> VARIABLE | BODY BODY;
+IFBODY -> IFBODY NEWLINE | IFBODY NEWLINE IFBODY | ASSCLAUSE | PRINT | IMPORT | FROM | COMMENT | IF | ELIF | ELSE | WHILE | DEF | FOR | WITH | STATEMENT;
+IF -> if BOOL : NEWLINE IFBODY | if ( BOOL ) : NEWLINE IFBODY;
+ELIF -> elif BOOL : NEWLINE IFBODY | elif ( BOOL ) : NEWLINE IFBODY;
+ELSE -> else : NEWLINE START;
+LOOPBODY -> LOOPBODY NEWLINE LOOPBODY | ASSCLAUSE | PRINT | IMPORT | FROM | COMMENT | IF | WHILE | CLASS | DEF | FOR | WITH | STATEMENT;
+WHILE -> while BOOL : NEWLINE LOOPBODY | while ( BOOL ) : NEWLINE LOOPBODY;
+CLASS -> class VARIABLE : NEWLINE START;
+DEF -> def VARIABLE ( VARVAL ) : NEWLINE START | DEF RETURN;
+RETURN -> return VARVAL | return;
+FOR -> for VARIABLE in STRING : NEWLINE LOOPBODY | for VARIABLE in LIST : NEWLINE LOOPBODY | for VARIABLE in RANGE : NEWLINE LOOPBODY;
+LIST -> [ VARVAL ];
+RANGE -> range ( VARVAL );
+WITH -> with open ( VARVAL ) as VARIABLE : NEWLINE START;
+TYPE -> str | int | float | double;
+INPUT -> input ( VARVAL ) | TYPE ( INPUT );
+STATEMENT -> BREAK | PASS | CONTINUE;
 BREAK -> break;
 PASS -> pass;
-CONTINUE -> continue;
-
-TYPE -> str | float | int | double;
-INPUT -> input BRACKET | TYPE ( INPUT );
-
-RANGE -> range BRACKET;
-WHILE -> while EXPRES | WHILE FUSION;
-
-FOR -> for VARIABLE in STRING BACK | for VARIABLE in RANGE BACK | for VARIABLE in LIST BACK;
-
-DEF -> def VARIABLE BRACKET BACK | DEF RETURN;
-RETURN -> return BOOL | return ALL | return;
-
-CLASS -> class VARIABLE BACK;
-
-IMPORT -> import VARIABLE as VARIABLE | import VARIABLE;
-FROM -> from VARIABLE IMPORT | from VARIABLE import *;
-
-WITH -> with open BRACKET as VARIABLE
+CONTINUE -> continue

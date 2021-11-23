@@ -1,20 +1,18 @@
-import re
 import sys
-import readFile as rf 
 
+number = ['1','2','3','4','5','6','7','8','9','10']
 
-regex = [r'[A-z0-9]*',
-             r'[0-9]*', 
-             r'[A-Za-z_][A-Za-z_0-9]*']
+def checkNumber(string):
+    for item in string:
+        if not (item in number):
+            return False
+    return True
 
-
-
-
-regexDictionary = {
-    r'[A-z0-9]*': "string",
-    r'[0-9]*': "number",
-    r'[A-Za-z_][A-Za-z_0-9]*': "variable",
-}
+def checkVariable(string):
+    if string[0] in number:
+        return False
+    else:
+        return True
 
 
 def bacaCNF(modelPath):
@@ -40,7 +38,7 @@ def bacaCNF(modelPath):
             else:
                 tuple = C[j],[A]
                 chomskyGrammar.append(tuple)
-
+  
     return(chomskyGrammar)
 
 
@@ -53,13 +51,29 @@ def cyk(Token, ChG):
             if(Token[i] == item[0]):
                 TableOut[0][i].extend(item[1])
                 TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
-        for TestRegex in regex:
-            if(re.match(TestRegex, Token[i])):
-                for item in ChG:
-                    if (regexDictionary[TestRegex] == item[0]) :
-                        TableOut[0][i].extend(item[1])
-                        TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
-                        break
+        isVariable = checkVariable(Token[i])
+        isNumber = checkNumber(Token[i])
+        if isVariable:
+            for item in ChG:
+                if("variable" == item[0]):
+                    TableOut[0][i].extend(item[1])
+                    TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
+        if isNumber:
+            for item in ChG:
+                if("number" == item[0]):
+                    TableOut[0][i].extend(item[1])
+                    TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
+        for item in ChG:
+            if("string" == item[0]):
+                TableOut[0][i].extend(item[1])
+                TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
+
+    for i in range(len(Token)):
+        for P in TableOut[0][i]:
+            for item in ChG:
+                if(P == item[0]):
+                    TableOut[0][i].extend(item[1])
+                    TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
     
     for i in range(1, len(Token)):
         for j in range(len(Token)-i):
@@ -74,23 +88,3 @@ def cyk(Token, ChG):
    
     return(TableOut)
                         
-
-
-# tess
-if len(sys.argv) > 1:
-    input = str(sys.argv[1])
-else:
-    input = 'input.txt'
-
-ChG = bacaCNF('CNF.txt')
-
-inp = rf.readInput(input)
-
-print("Compiling....")
-
-Parse = cyk(inp, ChG)
-
-if ("START" in Parse[-1][0] or "COMMENT" in Parse[-1][0]):
-    print("Compile Succes!")
-else:
-    print("Syntax error : Invalid syntax")
