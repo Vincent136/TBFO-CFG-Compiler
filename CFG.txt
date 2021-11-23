@@ -32,7 +32,7 @@ LIST -> [ VARVAL ];
 RANGE -> range ( VARVAL );
 WITH -> with open ( VARVAL ) as VARIABLE : NEWLINE START;
 TYPE -> str | int | float | double;
-INPUT -> input ( VARVAL ) | TYPE ( INPUT );
+INPUT -> input ( ) | input ( VARVAL ) | TYPE ( INPUT );
 STATEMENT -> BREAK | PASS | CONTINUE;
 BREAK -> break;
 PASS -> pass;
