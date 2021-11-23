@@ -17,19 +17,31 @@ regexDictionary = {
 }
 
 
-
 def bacaCNF(modelPath):
-    ChG = []
+    chomskyGrammar = []
     file = open(modelPath).read()
-    Rules = file.split('\n')
-    for i in range(len(Rules)-1):
-        HEAD = Rules[i].split(' -> ')[0]
-        TAIL = Rules[i].split(' -> ')[1]
-        TAIL = TAIL.replace(" ", "")
-        CTAIL = TAIL.split('|')
-        tuple = HEAD, CTAIL
-        ChG.append(tuple)
-    return ChG
+    rawRules = file.split('\n')
+    for i in range (len(rawRules)-1):
+        A = rawRules[i].split(' -> ')[0]
+        B = rawRules[i].split(' -> ')[1]
+        B = B.replace(" ","")
+        C = B.split('|')
+        for j in range (len(C)):
+            if len(chomskyGrammar) > 0:
+                found = False
+                for item in chomskyGrammar:
+                    if (C[j] == item[0]):
+                        item[1].extend([A])
+                        found = True
+                        break
+                if (not found):
+                    tuple = C[j],[A]
+                    chomskyGrammar.append(tuple)
+            else:
+                tuple = C[j],[A]
+                chomskyGrammar.append(tuple)
+
+    return(chomskyGrammar)
 
 
 def cyk(Token, ChG):
@@ -38,15 +50,16 @@ def cyk(Token, ChG):
     
     for i in range(len(Token)):
         for item in ChG:
-            if(Token[i] in item[1]):
-                TableOut[0][i].extend([item[0]])
-        if len(TableOut[0][i]) == 0:
-            for TestRegex in regex:
-                if(re.match(TestRegex, Token[i])):
-                    for item in ChG:
-                        if (regexDictionary[TestRegex] in item[1]) :
-                            TableOut[0][i].extend([item[0]])
-        
+            if(Token[i] == item[0]):
+                TableOut[0][i].extend(item[1])
+                TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
+        for TestRegex in regex:
+            if(re.match(TestRegex, Token[i])):
+                for item in ChG:
+                    if (regexDictionary[TestRegex] == item[0]) :
+                        TableOut[0][i].extend(item[1])
+                        TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
+                        break
     
     for i in range(1, len(Token)):
         for j in range(len(Token)-i):
@@ -54,9 +67,11 @@ def cyk(Token, ChG):
                 for P1 in TableOut[i-k-1][j]:
                     for P2 in TableOut[k][j+i-k]:
                         for item in ChG:
-                            if(P1 + P2 in item[1]):
-                                TableOut[i][j].extend([item[0]])
-
+                            if(P1+P2 == item[0]):
+                                TableOut[i][j].extend(item[1])
+                                break
+                TableOut[i][j] = list(dict.fromkeys(TableOut[i][j]))
+   
     return(TableOut)
                         
 
@@ -68,7 +83,6 @@ else:
     input = 'input.txt'
 
 ChG = bacaCNF('CNF.txt')
-
 
 inp = rf.readInput(input)
 

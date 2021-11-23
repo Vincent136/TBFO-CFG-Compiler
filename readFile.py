@@ -24,4 +24,4 @@ def readInput(fileName):
         print(result)
         return result
 
-readInput('test.txt')
+

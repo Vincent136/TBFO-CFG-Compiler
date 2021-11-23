@@ -1,7 +1,7 @@
 Terminals:
-+ - * / % [ ] and or variable number is ! not = > < ( ) True False string ' " if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open
++ - * / % [ ] = > < ( ) ' " ! , and or variable number is not True False string if elif else : print input str float int double while for in range def class import as from return raise len range break pass continue with open TypeError Exception
 Variables:
-START ALL VARIABLE VALUE BOOL OPS STRING IF ELIF ELSE PRINT EXPRES RELATION INPUT BRACKET TYPE WHILE FOR RANGE DEF CLASS IMPORT FROM RETURN RAISE WITH RANGE BREAK PASS CONTINUE COMMENT COMBODY NEBRACKET PRIMBOOL FUSION STRINGB LIST
+START ALL VARIABLE VALUE BOOL OPS STRING IF ELIF ELSE PRINT EXPRES RELATION INPUT BRACKET TYPE WHILE FOR RANGE DEF CLASS IMPORT FROM RETURN RAISE WITH RANGE BREAK PASS CONTINUE COMMENT COMBODY  PRIMBOOL FUSION LIST
 Productions:
 START -> START START | VARIABLE = ALL | VARIABLE + = ALL | VARIABLE - = ALL | VARIABLE * = ALL | VARIABLE / = ALL | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT; 
 ALL ->  VARIABLE | VALUE | ALL OPS ALL | ALL , ALL | INPUT | WITH;
@@ -26,8 +26,7 @@ STRING -> " string " | ' string ' | " COMBODY " | ' COMBODY ' | STRING + STRING;
 COMMENT -> " " " COMBODY " " " | ' ' ' COMBODY ' ' ';
 COMBODY -> ALL | COMBODY COMBODY;
 
-NEBRACKET -> ( ALL );
-BRACKET -> NEBRACKET | ( );
+BRACKET -> ( ALL ) | ( );
 
 PRINT -> print BRACKET;
 
@@ -45,12 +44,15 @@ ELIF -> elif EXPRES;
 ELIF -> ELIF ELIF;
 ELIF -> ELIF ELSE;
 ELIF -> ELIF RETURN;
-ELIF -> RAISE
+ELIF -> ELIF RAISE;
 ELIF -> ELIF FUSION;
 
 ELSE -> else BACK;
+ELSE -> ELSE RETURN;
+ELSE -> ELSE RAISE;
+ELSE -> ELSE FUSION;
 
-RAISE -> raise BRACKET;
+RAISE -> raise TypeError BRACKET | raise Exception BRACKET;
 
 FUSION -> BREAK | PASS | CONTINUE;
 BREAK -> break;
@@ -66,7 +68,7 @@ WHILE -> while EXPRES | WHILE FUSION;
 FOR -> for VARIABLE in STRING BACK | for VARIABLE in RANGE BACK | for VARIABLE in LIST BACK;
 
 DEF -> def VARIABLE BRACKET BACK | DEF RETURN;
-RETURN -> return BOOL | return ALL;
+RETURN -> return BOOL | return ALL | return;
 
 CLASS -> class VARIABLE BACK;
 
