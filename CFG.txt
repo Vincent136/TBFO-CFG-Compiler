@@ -1,9 +1,9 @@
 Terminals:
-+ - * / % [ ] and or variable number is ! not = > < ( ) true false string ' " if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open
++ - * / % [ ] and or variable number is ! not = > < ( ) True False string ' " if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open
 Variables:
 START ALL VARIABLE VALUE BOOL OPS STRING IF ELIF ELSE PRINT EXPRES RELATION INPUT BRACKET TYPE WHILE FOR RANGE DEF CLASS IMPORT FROM RETURN RAISE WITH RANGE BREAK PASS CONTINUE COMMENT COMBODY NEBRACKET PRIMBOOL FUSION STRINGB LIST
 Productions:
-START -> START START | BRACKET | VARIABLE = ALL | VARIABLE + = ALL | VARIABLE - = ALL | VARIABLE * = ALL | VARIABLE / = ALL | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT ; 
+START -> START START | VARIABLE = ALL | VARIABLE + = ALL | VARIABLE - = ALL | VARIABLE * = ALL | VARIABLE / = ALL | IF | PRINT | WHILE | FOR | DEF | CLASS | IMPORT | FROM | COMMENT; 
 ALL ->  VARIABLE | VALUE | ALL OPS ALL | ALL , ALL | INPUT | WITH;
 
 VARIABLE -> variable;
@@ -13,16 +13,17 @@ LIST -> [ ALL ] | [ LIST ];
 VALUE -> number | ( ALL ) | BOOL | STRING;
 VALUE -> ALL OPS ALL | ALL ANOTHEROPS ALL;
 
-PRIMBOOL -> true | false;
+PRIMBOOL -> True | False;
 BOOL -> PRIMBOOL | BOOL and BOOL | BOOL or BOOL | not BOOL | ALL is ALL | ALL RELATION ALL;
 
 RELATION -> > | < | = = | ! = | < = | > =;
+
 OPS -> + | - | * | / | %;
 ANOTHEROPS -> / / | * *;
 
 STRING -> " string " | ' string ' | " COMBODY " | ' COMBODY ' | STRING + STRING;
 
-COMMENT -> " " STRING " " | ' ' STRING ' ';
+COMMENT -> " " " COMBODY " " " | ' ' ' COMBODY ' ' ';
 COMBODY -> ALL | COMBODY COMBODY;
 
 NEBRACKET -> ( ALL );
@@ -60,7 +61,7 @@ TYPE -> str | float | int | double;
 INPUT -> input BRACKET | TYPE ( INPUT );
 
 RANGE -> range BRACKET;
-WHILE -> while EXPRES;
+WHILE -> while EXPRES | WHILE FUSION;
 
 FOR -> for VARIABLE in STRING BACK | for VARIABLE in RANGE BACK | for VARIABLE in LIST BACK;
 
@@ -69,7 +70,7 @@ RETURN -> return BOOL | return ALL;
 
 CLASS -> class VARIABLE BACK;
 
-IMPORT -> import string as VARIABLE | import string;
-FROM -> from VARIABLE IMPORT;
+IMPORT -> import VARIABLE as VARIABLE | import VARIABLE;
+FROM -> from VARIABLE IMPORT | from VARIABLE import *;
 
 WITH -> with open BRACKET as VARIABLE
