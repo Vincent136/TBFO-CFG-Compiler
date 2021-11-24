@@ -10,6 +10,9 @@ else:
 userinput , line = rf.readInput(Path)
 
 special = ['for', 'if', 'elif', 'else', 'while', 'with', 'def', 'class']
+multi = ['"""',"'''"]
+
+isMulti = False
 
 new = []
 for i in range(len(line)):
@@ -18,11 +21,29 @@ for i in range(len(line)):
 
     ChG = cyk.bacaCNF('CNF.txt')
 
-    Parse = cyk.cyk(new,ChG)
+    if len(userinput[i]) > 2 and ((userinput[i][0] + userinput[i][1] + userinput[i][2]) in multi) and not ((userinput[i][-1] + userinput[i][-2] + userinput[i][-3]) in multi):
+        isMulti= True
 
-    if not ("START" in Parse[-1][0]):
-        if not ((userinput[i][0] in special) and (i != len(line)-1)):
-            print("Syntax error: syntax error in line ", line[i])
-            exit(0)
+    if isMulti:
+        if len(userinput[i]) > 2 and((userinput[i][-1] + userinput[i][-2] + userinput[i][-3]) in multi):
+            isMulti = False
+            Parse = cyk.cyk(new,ChG)
+
+            if not ("START" in Parse[-1][0]):
+                print("Syntax error: syntax error in line ", line[i])
+                exit(0)
+        elif (i == len(line)-1):
+            Parse = cyk.cyk(new,ChG)
+
+            if not ("START" in Parse[-1][0]):
+                print("Syntax error: syntax error in line ", line[i])
+                exit(0)
+    else:
+        Parse = cyk.cyk(new,ChG)
+
+        if not ("START" in Parse[-1][0]):
+            if not ((userinput[i][0] in special) and (i != len(line)-1)):
+                print("Syntax error: syntax error in line ", line[i])
+                exit(0)
 
 print("Compile success")
