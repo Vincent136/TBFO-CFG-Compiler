@@ -1,0 +1,10 @@
+# Driver input/ouput sederhana
+
+A = input()
+B = input("nama"
+C = int(input("angka))
+
+D = A + B
+
+print(B + A)
+print(C)
