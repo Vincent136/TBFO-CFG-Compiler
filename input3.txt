@@ -1,1 +1,11 @@
-a = 2
+''' haloo
+aku adalah sebuah komentar
+kalo kamu??
+asdasdasdasdasdasdasdas d
+asdasdasd
+'''
+dasdasdasdsad
+sdsadasdasdasd
+dsadasdasdasd
+dsdasdasdsadasdsada
+'''

@@ -1,18 +1,13 @@
+#Driver class,def,import
+
 import pandas
 import numpy as np
 from matplotlib import *
 
-''' haloo '''
+class Tbfo
+    def test(a)
+        print(a)
+    def fungsi(b):
+        b += 1
 
-def function(X1):
-    print("aku sayang ibu")
 
-while True:
-    x = 5
-    y = 17
-    if x == 5:
-        y /= 5
-    elif x == 3:
-        y = y + 2
-    else:
-        print("aku berhasil! awok awok")

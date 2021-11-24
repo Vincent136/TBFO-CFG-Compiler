@@ -1,0 +1,16 @@
+# Driver all in one
+
+
+#Single line comment
+class Compiler:
+    def add(B,X):
+        B += X
+    def cek(A,I):
+        if A > I:
+            B = A + I
+        else:
+            B = A -I
+        print(B)
+
+''' multiline
+comment'''

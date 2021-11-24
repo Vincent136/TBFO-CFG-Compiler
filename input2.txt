@@ -1,9 +1,18 @@
+# Driver looping
 
-# ini comment
+# For loop
+for i in range(20):
+    print(i)
 
-def function(x):
-    x += 5
+for elmt in :
+    print(elmt)
+    if elmt == 'a':
+        break
 
-while True:
-    print("yes")
-    # ini comment
+# While
+a = 0
+while a <:
+    if a == 3:
+        break
+    else:
+        a += 1
