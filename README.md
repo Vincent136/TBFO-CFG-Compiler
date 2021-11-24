@@ -8,13 +8,13 @@
 ### Cara Menggunakan Compiler:
 Kegunaan setiap file .txt:
 * `CFG.txt` terminal, variables, productions grammar
-* `CNF.txt` hasil convertan CFG ke CNF
+* `CNF.txt` hasil convert CFG ke CNF
 * `input.txt` file yang digunakan sebagai kode yang akan dicompile
 
 1. Untuk mengubah CNF, maka bisa dilakukan hal sebagai berikut:
 ```shell
-python CFG2CNF.py <file cfg.txt>
-py CFG2CNF.py <file cfg.txt>
+python CFG2CNF.py <file_cfg.txt>
+py CFG2CNF.py <file_cfg.txt>
 ```
 
 2. Jalankan program bisa dengan dua cara:
