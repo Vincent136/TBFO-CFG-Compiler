@@ -1,18 +1,2 @@
-import pandas
-import numpy1 as np
-from matplotlib import kambing
-
-''' haloo 
-aku adalah sebuah komentar
-kalo kamu?? 
-asdasdasdasdasdasdasdas d
-asdasdasd
-
-dasdasdasdsad
-sdsadasdasdasd
-dsadasdasdasd
-dsdasdasdsadasdsada
-'''
-
-def function(x):
-    for += 2
+a = 1
+a = (2 , 3)
