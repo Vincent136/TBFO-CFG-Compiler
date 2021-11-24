@@ -48,17 +48,20 @@ def cyk(Token, ChG):
     TableOut = [[[] for j in range(len(Token))]for i in range(len(Token))]
     
     for i in range(len(Token)):
+        found = False
         for item in ChG:
             if(Token[i] == item[0]):
                 TableOut[0][i].extend(item[1])
                 TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
-        isVariable = checkVariable(Token[i])
+                found = True
+        if not found:
+            isVariable = checkVariable(Token[i])
+            if isVariable:
+                for item in ChG:
+                    if("variable" == item[0]):
+                        TableOut[0][i].extend(item[1])
+                        TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
         isNumber = checkNumber(Token[i])
-        if isVariable:
-            for item in ChG:
-                if("variable" == item[0]):
-                    TableOut[0][i].extend(item[1])
-                    TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
         if isNumber:
             for item in ChG:
                 if("number" == item[0]):

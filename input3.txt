@@ -1,6 +1,6 @@
 import pandas
-import numpy as np
-from matplotlib import *
+import numpy1 as np
+from matplotlib import kambing
 
 ''' haloo 
 aku adalah sebuah komentar
@@ -15,4 +15,4 @@ dsdasdasdsadasdsada
 '''
 
 def function(x):
-    x += 2
+    for += 2
