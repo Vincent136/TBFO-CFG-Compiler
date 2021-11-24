@@ -64,10 +64,11 @@ def cyk(Token, ChG):
                 if("number" == item[0]):
                     TableOut[0][i].extend(item[1])
                     TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
-        for item in ChG:
-            if("string" == item[0]):
-                TableOut[0][i].extend(item[1])
-                TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
+        if(Token[i] != "$"):
+            for item in ChG:
+                if("string" == item[0]):
+                    TableOut[0][i].extend(item[1])
+                    TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
 
     for i in range(len(Token)):
         for P in TableOut[0][i]:
@@ -75,6 +76,8 @@ def cyk(Token, ChG):
                 if(P == item[0]):
                     TableOut[0][i].extend(item[1])
                     TableOut[0][i] = list(dict.fromkeys(TableOut[0][i]))
+
+    
     
     for i in range(1, len(Token)):
         for j in range(len(Token)-i):

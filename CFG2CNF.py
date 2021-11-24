@@ -5,7 +5,7 @@ import sys, helper
 left, right = 0, 1
 
 K, V, Productions = [],[],[]
-variablesJar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R","T", "U", "W", "X", "Y", "Z","AA", "BB", "CC", "DD", "EE", "FF", "GG", "HH", "II", "JJ", "KK", "LL", "MM", "NN", "OO", "PP", "QQ", "RR", "SS", "TT", "UU", "WW", "XX", "YY", "ZZ","AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG", "HHH", "III", "JJJ", "KKK", "LLL", "MMM", "NNN", "OOO", "PPP", "QQQ", "RRR", "SSS", "TTT", "UUU", "WWW", "XXX", "YYY", "ZZZ","AAAA","BBBBB"]
+variablesJar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R","T", "U", "W", "X", "Y", "Z","AA", "BB", "CC", "DD", "EE", "FF", "GG", "HH", "II", "JJ", "KK", "LL", "MM", "NN", "OO", "PP", "QQ", "RR", "SS", "TT", "UU", "WW", "XX", "YY", "ZZ","AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG", "HHH", "III", "JJJ", "KKK", "LLL", "MMM", "NNN", "OOO", "PPP", "QQQ", "RRR", "SSS", "TTT", "UUU", "WWW", "XXX", "YYY", "ZZZ","AAAA","BBBB","CCCC","DDDD","EEEE","FFFF"]
 
 
 def isUnitary(rule, variables):

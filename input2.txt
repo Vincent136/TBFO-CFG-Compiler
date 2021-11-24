@@ -1,4 +1,9 @@
-a = int(input())
-nama = "TBFO ganteng"
-print(a)
-print(nama)
+
+# ini comment
+
+def function(x):
+    x += 5
+
+while True:
+    print("yes")
+    # ini comment
